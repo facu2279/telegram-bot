@@ -44,19 +44,16 @@ def info_clima(pais):
   strfinal = str(inicio) +  str(descripcion) + " with a temperature of " +  str(temperatura) + "*C and atmospheric pressure is " + str(presion) + '" and the humidity in the air is ' + str(humedad) + "%"
   return strfinal
 
-
-
 """ start function - muestra en pantalla el menu prinicipal """
 @bot.message_handler(commands=['start'])
 def menu(message):
   bot.send_message(message.chat.id, "Hi! how can I help you?\n\nI want to know the /weather \nI want to /count or /restart the counter")
 
 
-
 """ weather function - muestra las ciudades a las que podemos consultar el clima """
 @bot.message_handler(commands=['weather'])
 def climas(message):
-  bot.send_message(message.chat.id, "Welcome to the weather section\n\nChoose a place\n\n/Montevideo\n/Londres\n/Madrid")
+  bot.send_message(message.chat.id, "Welcome to the weather section\n\nChoose a place\n\n/Montevideo\n/Londres\n/Madrid\n/Bogota\n/Brasilia")
 
 
 """ suma uno a la variable i que usamos para contar 
@@ -91,6 +88,16 @@ def london(message):
 @bot.message_handler(commands=['Madrid'])
 def madrid(message):
   res = info_clima("Madrid")
+  bot.send_message(message.chat.id, res)
+
+@bot.message_handler(commands=['Bogota'])
+def bogota(message):
+  res = info_clima("Bogota")
+  bot.send_message(message.chat.id, res)
+
+@bot.message_handler(commands=['Brasilia'])
+def brasilia(message):
+  res = info_clima("Brasilia")
   bot.send_message(message.chat.id, res)
 
 """ consulta constantemente """
