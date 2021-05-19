@@ -2,17 +2,15 @@
 
 
 """ IMPORTS """
-"""pyTelegramBotAPI module """
+"""pyTelegramBotAPI module"""
 import telebot
 """ requests module"""
 import requests
 
 
-""" el user name del bot es @weather_nerv_bot
-la version que queda subida en github no va a tener seteada
-la variable API_KEY para evitar que alguien modifique su funcionalidad """
+""" el user name del bot es @weather_nerv_bot """
 
-API_KEY = ""
+API_KEY = "1780454391:AAEvdNwlIt_3n3HHyLs21GEzV8rwduRdJRs"
 i = 0
 
 """ creamos la instancia """
