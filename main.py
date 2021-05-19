@@ -2,7 +2,7 @@
 
 
 """ IMPORTS """
-"""pyTelegramBotAPI module"""
+"""pyTelegramBotAPI module """
 import telebot
 """ requests module"""
 import requests
@@ -12,7 +12,7 @@ import requests
 la version que queda subida en github no va a tener seteada
 la variable API_KEY para evitar que alguien modifique su funcionalidad """
 
-API_KEY = "1780454391:AAEvdNwlIt_3n3HHyLs21GEzV8rwduRdJRs"
+API_KEY = ""
 i = 0
 
 """ creamos la instancia """
