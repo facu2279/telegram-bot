@@ -31,17 +31,20 @@ def info_clima(pais):
   query2 = "&appid=b01d355c0ce08cde0aed9ad580d0c649"
   r = requests.get(query + pais + query2)
   r = r.json()
-  inicio = "The weather in " + pais + " is "
-  descripcion = r["weather"]
-  for i in descripcion:
-      for i2 in i:
-          if i2 == "description":
-              descripcion = i[i2]
-  temperatura = (r["main"]["temp"])
-  temperatura = kelvin_to_c(temperatura)
-  presion = (r["main"]["pressure"])
-  humedad = (r["main"]["humidity"])
-  strfinal = str(inicio) +  str(descripcion) + " with a temperature of " +  str(temperatura) + "*C and atmospheric pressure is " + str(presion) + '" and the humidity in the air is ' + str(humedad) + "%"
+  if len(r) > 2:
+    inicio = "The weather in " + pais + " is "
+    descripcion = r["weather"]
+    for i in descripcion:
+        for i2 in i:
+            if i2 == "description":
+                descripcion = i[i2]
+    temperatura = (r["main"]["temp"])
+    temperatura = kelvin_to_c(temperatura)
+    presion = (r["main"]["pressure"])
+    humedad = (r["main"]["humidity"])
+    strfinal = str(inicio) +  str(descripcion) + " with a temperature of " +  str(temperatura) + "*C and atmospheric pressure is " + str(presion) + '" and the humidity in the air is ' + str(humedad) + "%"
+  else:
+    strfinal = "Please, insert a valid place"
   return strfinal
 
 """ start function - muestra en pantalla el menu prinicipal """
@@ -53,8 +56,7 @@ def menu(message):
 """ weather function - muestra las ciudades a las que podemos consultar el clima """
 @bot.message_handler(commands=['weather'])
 def climas(message):
-  bot.send_message(message.chat.id, "Welcome to the weather section\n\nChoose a place\n\n/Montevideo\n/Londres\n/Madrid\n/Bogota\n/Brasilia")
-
+  bot.send_message(message.chat.id, "Welcome to the weather section\n\nChoose a place\n\n/Montevideo\n/Londres\n/Madrid\n\n or write the place that interests you")
 
 """ suma uno a la variable i que usamos para contar 
 y luego lo printea en pantalla """
@@ -74,7 +76,8 @@ def reset_counter(message):
 
 
 """ kit de funciones que llaman info_clima pasandole
-como parametro distintos paises y luego muestra en pantalla la info"""
+como parametro distintos paises o lee lo que el usuario inserto """
+
 @bot.message_handler(commands=['Montevideo'])
 def mvd(message):
   res = info_clima("Montevideo")
@@ -90,14 +93,10 @@ def madrid(message):
   res = info_clima("Madrid")
   bot.send_message(message.chat.id, res)
 
-@bot.message_handler(commands=['Bogota'])
-def bogota(message):
-  res = info_clima("Bogota")
-  bot.send_message(message.chat.id, res)
-
-@bot.message_handler(commands=['Brasilia'])
-def brasilia(message):
-  res = info_clima("Brasilia")
+@bot.message_handler(content_types=['text'])
+def text(message):
+  pais = message.text
+  res = info_clima(pais)
   bot.send_message(message.chat.id, res)
 
 """ consulta constantemente """
