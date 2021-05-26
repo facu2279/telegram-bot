@@ -12,7 +12,7 @@ I'm not going to have it online for long but you can find it as @weather_nerv_bo
 
 ## Authors
 
-Made by [Facundo Diaz](https://github.com/facu2279) for Holberton School 2021
+Made by [Facundo Diaz](https://github.com/facu2279) 2021
 
 Social Networks
 -------------------
